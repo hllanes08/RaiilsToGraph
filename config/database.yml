@@ -21,4 +21,4 @@ staging:
 
 production:
   <<: *default
-  database: baseline_production
+  database: rails2graph_production
