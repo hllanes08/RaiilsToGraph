@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id         :bigint           not null, primary key
+#  article_id :integer
+#  total      :float
+#  quantity   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
+one:
+  article_id: 1
+  customer_id: 1
+  total: 1.5
+  quantity: 1
+
+two:
+  article_id: 1
+  customer_id: 1
+  total: 1.5
+  quantity: 1
