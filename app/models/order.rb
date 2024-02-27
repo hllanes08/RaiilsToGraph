@@ -13,4 +13,15 @@
 class Order < ApplicationRecord
   belongs_to :article
   belongs_to :user
+
+  def to_json
+    {
+      id: self.id,
+      article: {
+        name: self.article.name
+      },
+      total: self.total,
+      quantity: self.quantity
+    }
+  end
 end
