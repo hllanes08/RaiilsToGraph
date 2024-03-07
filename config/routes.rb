@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       sessions:  'api/users/sessions', 
     }
     get 'orders', to: 'orders#index', as: 'orders'
+    post 'order', to: 'orders#create', as: 'create_order'
    end
   root to: 'home#index' 
 end
