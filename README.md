@@ -1,7 +1,7 @@
 # Setup Instructions
 ## Setup your environment variable on docker-compose.yml file
 Setup the following environment variables
-  * DATABASE: postgres://postgres:postgres@db:5432
+  * DATABASE_URL: postgres://postgres:postgres@db:5432
   * DEVISE_JWT_SECRET_KEY: 'yourdevisecret'
 ## Build project runing docker
 ```

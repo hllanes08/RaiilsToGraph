@@ -26,7 +26,7 @@ services:
       - 3000:3000
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432
-      DEVISE_JWT_SECRET_KEY: '82c0a397ebb539bc848ae97f026851e7'
+      DEVISE_JWT_SECRET_KEY: ''
     networks:
       - backend
     extra_hosts:
