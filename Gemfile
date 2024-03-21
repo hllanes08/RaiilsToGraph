@@ -78,3 +78,6 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.3"
+
+gem "graphql", "~> 2.2"
+gem "graphiql-rails", group: :development

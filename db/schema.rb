@@ -23,14 +23,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_205424) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "orders", force: :cascade do |t|
     t.integer "article_id"
     t.float "total"

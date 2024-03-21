@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
   devise_for :users
   get 'orders', to: 'orders#index', as: 'orders'
   namespace :api do
@@ -7,6 +11,6 @@ Rails.application.routes.draw do
     }
     get 'orders', to: 'orders#index', as: 'orders'
     post 'order', to: 'orders#create', as: 'create_order'
-   end
+  end
   root to: 'home#index' 
 end
