@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= super || User.find(@current_user_id)
+    @current_user ||= @current_user_id.present? ? User.find(@current_user_id) : super
   end
 
   def signed_in?
