@@ -20,7 +20,11 @@ module Types
  
     field :orders, [Types::OrderType], null: false
     def orders
+      if context[:current_user].present?
       context[:current_user].orders
+      else
+        []
+      end
     end
   end
 end
