@@ -3,7 +3,7 @@
 module Types
   class OrderType < Types::BaseObject
     field :id, ID, null: false
-    field :article_id, Integer
+    field :article, Types::ArticleType
     field :total, Float
     field :quantity, Integer
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
