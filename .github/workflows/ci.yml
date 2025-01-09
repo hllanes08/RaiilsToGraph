@@ -15,10 +15,23 @@ jobs:
           POSTGRES_PASSWORD: postgres
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Ruby ${{ matrix.ruby-version }}
-        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
-        with:
-          ruby-version: ${{ matrix.ruby-version }}
+      - name: Set up RVM
+        run: |
+          curl -sSL https://get.rvm.io | bash
+      - name: Set up Ruby with rvm
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          rvm pkg install openssl
+          wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+          tar zxvf openssl-1.1.1g.tar.gz
+          cd "openssl-1.1.1g" 
+          ./config --prefix=$HOME/.openssl/openssl-1.1.1g --openssldir=$HOME/.openssl/openssl-1.1.1g
+          make 
+          make install
+          rm -rf ~/.openssl/openssl-1.1.1g/certs
+          ln -s /etc/ssl/certs ~/.openssl/openssl-1.1.1g/certs
+          rvm install ruby-3.2.3 -C --with-openssl-dir=$HOME/.openssl/openssl-1.1.1g #--binary
+          rvm --default use ruby-3.2.3
       - name: Install dependencies
         run: bundle install
       - name: Run tests
