@@ -32,10 +32,14 @@ jobs:
           ln -s /etc/ssl/certs ~/.openssl/openssl-1.1.1g/certs
           rvm install ruby-3.2.3 -C --with-openssl-dir=$HOME/.openssl/openssl-1.1.1g #--binary
           rvm --default use ruby-3.2.3
-      - name: Install dependencies
-        run: bundle install
-      - name: Run tests
-        run: bundle exec rspec
+      - name: Build and run tests
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler -v '~> 2.4.10'
+          bundle install --jobs 4 --retry 3
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:migrate RAILS_ENV=test 
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
 
