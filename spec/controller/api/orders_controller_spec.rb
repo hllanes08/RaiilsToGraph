@@ -14,7 +14,7 @@ RSpec.describe Api::OrdersController, type: :controller do
 
     it "get orders" do
       get :index
-      expect(response).to be_successful
+      expect(response.status).to eq 200 
       json_response = JSON.parse(response.body)
       expect(json_response['orders'].size).to eq 0
     end
@@ -27,7 +27,7 @@ RSpec.describe Api::OrdersController, type: :controller do
           quantity: 5
         }
       }
-      expect(response).to be_successful
+      expect(response.status).to eq 200 
       json_response = JSON.parse(response.body)
       expect(json_response['order']['id'].present?).to eq true
       get :index
