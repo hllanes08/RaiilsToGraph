@@ -13,6 +13,7 @@ RSpec.describe Api::OrdersController, type: :controller do
     end
 
     it "get orders" do
+      expect(user.id.present?).to eq true
       get :index
       expect(response.status).to eq 200 
       json_response = JSON.parse(response.body)
@@ -20,6 +21,7 @@ RSpec.describe Api::OrdersController, type: :controller do
     end
 
     it 'create order' do
+      expect(user.id.present?).to eq true
       post :create, params: {
         order: {
           article_id: article.id,
